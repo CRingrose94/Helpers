@@ -26,7 +26,6 @@ class ExceptionPrinter:
 
 
 class Example:
-
     def __init__(self, a, b):
         self.a = a
         self.b = b
@@ -43,5 +42,4 @@ def example_function(a, b):
 
 if __name__ == '__main__':
     Example(1, 0).example_method()
-
     example_function(2, 0)
