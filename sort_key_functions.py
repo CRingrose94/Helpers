@@ -35,3 +35,26 @@ print(sorted(students, key=lambda student: getattr(student, 'name')))
 print(sorted(students, key=lambda student: getattr(student, 'name').lower()))
 # Sort by grade
 print(sorted(students, key=lambda student: getattr(student, 'grade'), reverse=True))
+
+
+# Sort list but ensure group comes first
+class Sorter:
+    def __init__(self, group):
+        self.group = group
+        self.found = False
+
+    def __call__(self, x):
+        if x in self.group:
+            self.found = True
+            return 0, x
+        return 1, x
+
+
+numbers = [8, 3, 1, 2, 5, 4, 7, 6]
+grp = {2, 3, 5, 7}
+
+sorter = Sorter(grp)
+print(sorted(numbers, key=sorter))
+assert sorter.found
+
+# >>> [2, 3, 5, 7, 1, 4, 6, 8]
